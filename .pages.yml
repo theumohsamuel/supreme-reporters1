@@ -1,0 +1,75 @@
+media:
+  input: public/uploads
+  output: /uploads
+
+content:
+  - name: articles
+    label: News articles
+    type: collection
+    path: src/content/articles
+    filename: "{primary}.md"
+    format: yaml-frontmatter
+    view:
+      primary: title
+      sort: pubDate
+      order: desc
+    fields:
+      - name: title
+        label: Headline
+        type: string
+        required: true
+      - name: description
+        label: Summary / standfirst
+        type: text
+        required: true
+      - name: pubDate
+        label: Publication date
+        type: date
+        required: true
+      - name: author
+        label: Reporter / byline
+        type: string
+        required: true
+      - name: category
+        label: Section
+        type: select
+        options:
+          values:
+            - Nigeria
+            - Politics
+            - World
+            - Business
+            - Education
+            - Technology
+            - Entertainment
+            - Sports
+            - Opinion
+        required: true
+      - name: image
+        label: Featured image path or URL
+        type: string
+      - name: featured
+        label: Feature on homepage
+        type: boolean
+      - name: draft
+        label: Keep as draft
+        type: boolean
+      - name: body
+        label: Article body
+        type: rich-text
+        required: true
+
+  - name: newsroom
+    label: Site pages
+    type: group
+    items:
+      - name: about
+        label: About page
+        type: file
+        path: src/pages/about.astro
+        format: raw
+      - name: contact
+        label: Contact page
+        type: file
+        path: src/pages/contact.astro
+        format: raw
